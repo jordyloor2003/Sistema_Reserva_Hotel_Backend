@@ -1,0 +1,38 @@
+# Entorno virtual
+env/
+venv/
+ENV/
+*.pyc
+*.pyo
+__pycache__/
+
+# Archivos de configuración sensibles
+*.env
+settings_local.py
+db.sqlite3
+
+# Bases de datos locales
+*.sqlite3
+*.db
+
+# Logs
+*.log
+
+# Django static/media
+/static/
+/media/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Node / Frontend (si tienes frontend dentro del repo)
+node_modules/
+dist/
+build/
