@@ -36,7 +36,7 @@ urlpatterns = [
     path('api/reportes/', include('app.reportes.urls')),
 
     # Login token
-    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
+    path('api/api-token-auth/', obtain_auth_token, name='api_token_auth'),
     
     # Esquema y Swagger / Redoc
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
