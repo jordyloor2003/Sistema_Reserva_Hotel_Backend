@@ -59,6 +59,7 @@ class ReservaViewSet(viewsets.ModelViewSet):
                     f'Monto: ${pago.monto} - Tipo de pago: {pago.tipo_pago}',
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=['jloorm2003@gmail.com', 'jloorm4@gmail.com'],
+            fail_silently=True,
         )
 
     def perform_destroy(self, instance):
