@@ -52,15 +52,15 @@ class ReservaViewSet(viewsets.ModelViewSet):
         reserva.habitacion.save()
 
         # Enviar correo de notificación
-        send_mail(
-            subject='Confirmación de reserva y pago',
-            message=f'Se ha registrado una reserva para la habitación "{reserva.habitacion}" '
-                    f'del {reserva.fecha_inicio} al {reserva.fecha_fin}.\n'
-                    f'Monto: ${pago.monto} - Tipo de pago: {pago.tipo_pago}',
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=['jloorm2003@gmail.com', 'jloorm4@gmail.com'],
-            fail_silently=True,
-        )
+        # send_mail(
+        #     subject='Confirmación de reserva y pago',
+        #     message=f'Se ha registrado una reserva para la habitación "{reserva.habitacion}" '
+        #             f'del {reserva.fecha_inicio} al {reserva.fecha_fin}.\n'
+        #             f'Monto: ${pago.monto} - Tipo de pago: {pago.tipo_pago}',
+        #     from_email=settings.DEFAULT_FROM_EMAIL,
+        #     recipient_list=['jloorm2003@gmail.com', 'jloorm4@gmail.com'],
+        #     fail_silently=True,
+        # )
 
     def perform_destroy(self, instance):
         habitacion = instance.habitacion
