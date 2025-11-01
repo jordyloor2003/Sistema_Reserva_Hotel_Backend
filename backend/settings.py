@@ -68,6 +68,11 @@ CORS_ALLOWED_ORIGINS = [
     "https://sistema-reserva-hotel.vercel.app",
 ]
 
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+]
+
 CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'backend.urls'
