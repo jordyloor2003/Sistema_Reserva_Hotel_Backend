@@ -7,7 +7,7 @@ from app.pagos.models import Pago
 from app.usuarios.permissions import IsAdministrador, IsGerente
 from rest_framework import viewsets
 from .models import Reporte
-from .serializers import ReporteSerializer
+from .serializers import (ReporteSerializer, ReporteReservaSerializer, ReporteIngresoSerializer)
 from drf_spectacular.utils import extend_schema
 
 @extend_schema(tags=['Reportes'])
@@ -25,7 +25,7 @@ class ReporteReservasView(APIView):
         estado = request.query_params.get('estado')
 
         reservas = Reserva.objects.select_related('cliente', 'habitacion').all()
-        
+
         if fecha_inicio:
             reservas = reservas.filter(fecha_inicio__gte=fecha_inicio)
         if fecha_fin:
@@ -33,15 +33,8 @@ class ReporteReservasView(APIView):
         if estado:
             reservas = reservas.filter(estado=estado)
 
-        data = reservas.values(
-            'cliente__nombre',
-            'habitacion__tipo',
-            'fecha_inicio',
-            'fecha_fin',
-            'estado'
-        )
-
-        return Response(list(data))
+        serializer = ReporteReservaSerializer(reservas, many=True)
+        return Response(serializer.data)
 
 
 class ReporteIngresosView(APIView):
