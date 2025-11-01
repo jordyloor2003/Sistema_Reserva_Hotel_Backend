@@ -34,22 +34,23 @@ class ReservaViewSet(viewsets.ModelViewSet):
         return super().list(request, *args, **kwargs)
 
     def perform_create(self, serializer):
-        tipo_pago = self.request.data.get('tipo_pago', 'Efectivo')
+        #tipo_pago = self.request.data.get('tipo_pago', 'Efectivo')
         reserva = serializer.save()
 
-        # Crear el pago automáticamente
-        pago = Pago.objects.create(
-            monto=reserva.habitacion.precio,
-            tipo_pago=tipo_pago,
-            estado='exitoso'
-        )
+        # # Crear el pago automáticamente
+        # pago = Pago.objects.create(
+        #     monto=reserva.habitacion.precio,
+        #     tipo_pago=tipo_pago,
+        #     estado='exitoso'
+        # )
 
-        reserva.pago = pago
-        reserva.save()
+        # reserva.pago = pago
+        # reserva.save()
 
         # Marcar habitación como ocupada
-        reserva.habitacion.estado = 'ocupada'
-        reserva.habitacion.save()
+        habitacion = reserva.habitacion
+        habitacion.estado = 'ocupada'
+        habitacion.save()
 
         # Enviar correo de notificación
         # send_mail(
