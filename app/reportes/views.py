@@ -24,8 +24,8 @@ class ReporteReservasView(APIView):
         fecha_fin = request.query_params.get('fecha_fin')
         estado = request.query_params.get('estado')
 
-        reservas = Reserva.objects.all()
-
+        reservas = Reserva.objects.select_related('cliente', 'habitacion').all()
+        
         if fecha_inicio:
             reservas = reservas.filter(fecha_inicio__gte=fecha_inicio)
         if fecha_fin:
